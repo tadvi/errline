@@ -12,9 +12,11 @@ error by recording short file name and line at the point Wrap is called.
 It may be necessary to reverse the operation of errline.Wrap to retrieve the original error
 for inspection. Any error value which implements this interface
 
+```
 type causer interface {
     Cause() error
 }
+```
 
 can be inspected by errline.Cause.
 
