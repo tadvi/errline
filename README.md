@@ -41,7 +41,7 @@ func SomeWork() error {
 }
 
 func main() {
-	if err := SomeWork; err != nil {
+	if err := SomeWork(); err != nil {
 		// IMPORTANT: only +v verb will print short file name and line number.
 		// Other verbs simply print err.Error() without file information.
 		log.Printf("%+v", err)  
