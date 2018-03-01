@@ -2,8 +2,20 @@
 Package adds file and line information to Go errors.
 
 Errors in Go do not have stack trace or file location information attached to them.
-Stack traces provide extensive location failure information but are very verbose.
-This package only attaches short file name and line information to the errors.
+This package only attaches short file name and line information to the error.
+That way both error location information and error message can fit in one line.
+
+The errline.Wrap function returns a new error that adds context to the original
+error by recording short file name and line at the point Wrap is called.
+
+It may be necessary to reverse the operation of errline.Wrap to retrieve the original error
+for inspection. Any error value which implements this interface
+
+type causer interface {
+    Cause() error
+}
+
+can be inspected by errline.Cause.
 
 Usage:
 
