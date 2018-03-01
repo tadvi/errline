@@ -31,8 +31,9 @@ func SomeWork() error {
 	if err := ftp.Connect(addr); err != nil {
 		// Here we wrap error with file and line information.
 		// If error is already wrapped with file information then Wrap returns original error.
-		return errline.Wrap(err);
+		return errline.Wrap(err)
 	}
+	...
 }
 
 func main() {
@@ -41,6 +42,7 @@ func main() {
 		// Other verbs simply print err.Error() without file information.
 		log.Printf("%+v", err)
 	}
+	...
 }
 
 */
