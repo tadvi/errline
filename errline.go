@@ -73,6 +73,11 @@ func Wrap(err error) error {
 		line = 0
 	}
 
+	file = getShortFilename(file)
+	return &withFileLine{err, file, line}
+}
+
+func getShortFilename(file string) string {
 	short := file
 	for i := len(file) - 1; i > 0; i-- {
 		if file[i] == '/' {
@@ -81,7 +86,7 @@ func Wrap(err error) error {
 		}
 	}
 	file = short
-	return &withFileLine{err, file, line}
+	return file
 }
 
 type withFileLine struct {
