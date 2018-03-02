@@ -51,3 +51,8 @@ func main() {
 
 ```
 
+Main idea for this package came from 
+[Simple error handling primitives](https://github.com/pkg/errors)
+
+However this package is much simpler and designed for specific purpose only: capture file and line.
+That's it.
