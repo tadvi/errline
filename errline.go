@@ -38,9 +38,11 @@ func SomeWork() error {
 
 func main() {
 	if err := SomeWork(); err != nil {
-		// IMPORTANT: only +v verb will print short file name and line number.
+		// IMPORTANT: only %v verb will print short file name and line number.
 		// Other verbs simply print err.Error() without file information.
-		log.Printf("%+v", err)
+		log.Printf("%v", err)
+		// or
+		log.Println(err)
 	}
 	...
 }
@@ -100,11 +102,7 @@ func (w *withFileLine) Cause() error { return w.error }
 func (w *withFileLine) Format(s fmt.State, verb rune) {
 	switch verb {
 	case 'v':
-		if s.Flag('+') {
-			fmt.Fprintf(s, "%s:%d: %+v", w.file, w.line, w.Cause())
-			return
-		}
-		fallthrough
+		fmt.Fprintf(s, "%s:%d: %v", w.file, w.line, w.Cause())
 	case 's':
 		io.WriteString(s, w.Error())
 	case 'q':
